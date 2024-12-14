@@ -1,21 +1,17 @@
-from collections import defaultdict
-
-with open("sample.txt", 'r') as file:
+with open("input.txt", 'r') as file:
     content = list(map(int, file.read().split()))
 
-sum = 0 
-seen = defaultdict(int)
+seen = set()
+sum = 0
 
 exit = False
-while 2 not in seen.values():
-    for num in content:
-        if exit:
-            break
-        sum += num
-        if sum in seen.keys():
-            exit = True
-        else:
-            seen[sum] += 1
 
-print(seen)
+while not exit:
+    for num in content:
+        sum += num
+        if sum in seen:
+            exit = True
+            break
+        else: seen.add(sum)
+
 print(sum)
